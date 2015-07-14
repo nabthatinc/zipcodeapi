@@ -6,7 +6,11 @@ module ZipCodeApi
   module Request
     
     def get(path, options={})
-      request(:get, path, options)
+      begin
+        request(:get, path, options)
+      rescue NotFound
+        nil
+      end
     end
 
     private

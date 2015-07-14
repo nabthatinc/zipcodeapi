@@ -1,4 +1,5 @@
 require 'faraday_middleware'
+Dir[File.expand_path('../../faraday/*.rb', __FILE__)].each{|f| require f}
 
 module ZipCodeApi
 
@@ -17,7 +18,7 @@ module ZipCodeApi
         case format.to_s.downcase
         when 'json' then connection.use Faraday::Response::ParseJson
         end
-        connection.use FaradayMiddleware::RaiseHttpException
+        connection.use ZipCodeApi::Exceptions
         connection.adapter(adapter)
       end
     end
