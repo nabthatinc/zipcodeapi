@@ -13,6 +13,11 @@ module ZipCodeApi
         response
       end
 
+      def code_location(zip_code, options = {})
+        response = get("#{api_key}/info.#{format}/#{zip_code}/#{distance_units}", options)
+        response
+      end
+
     end
 
   end
